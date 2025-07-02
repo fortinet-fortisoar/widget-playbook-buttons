@@ -2,289 +2,151 @@
   MIT License
   Copyright (c) 2025 Fortinet Inc
   Copyright end -->
-<form
-  data-ng-submit="save()"
-  class="noMargin"
-  name="editPlaybookButtonsForm"
-  novalidate
->
-  <div class="modal-header">
-    <h3 class="modal-title col-md-9">Edit Playbook Buttons</h3>
-    <button
-      type="button"
-      class="close"
-      data-ng-click="cancel()"
-      data-dismiss="modal"
-      aria-label="Close"
-      id="close-edit-widget-form-btn"
-    >
-      <div aria-hidden="true" class="version-button">+</div>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="typehead-field" name="userForm">
-      <h8
-        >Select the playbooks which you want to render on record View Panel</h8
-      >
-      <div class="form-group dashed-border-section" style="position: relative">
-        <div style="padding: 12px">
-          <div class="row margin-bottom-sm">
-            <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-8">
-                  <div
-                    class="form-group margin-bottom-0"
-                    data-ng-class="{ 'has-error': editPlaybookButtonsForm.select_playbooks_with_record.$invalid && editPlaybookButtonsForm.select_playbooks_with_record.$touched }"
-                  >
-                    <label class="control-label">Select Action Buttons</label>
-                    <span
-                      data-uib-tooltip="Select playbook which tou want to render and execute from record view panel"
-                      data-tooltip-append-to-body="true"
-                      ><i
-                        class="margin-left-sm icon icon-information font-Size-13"
-                      >
-                      </i
-                    ></span>
-                    <div class="btn-group cd-dropdown" uib-dropdown>
-                      <button
-                        class="form-control input-sm truncate"
-                        uib-dropdown-toggle
-                        type="button"
-                        data-toggle="dropdown"
-                        data-ng-required="true"
-                        id="select_playbooks_with_record"
-                      >
-                        Select a Playbook <span class="caret"></span>
-                      </button>
-                      <ul
-                        class="dropdown-menu"
-                        uib-dropdown-menu
-                        role="menu"
-                        aria-labelledby="btn-append-to-single-button"
-                      >
-                        <li
-                          class="primary-div"
-                          data-ng-if="modulePlaybooks.length > 5"
-                        >
-                          <div
-                            class="input-group search-style margin-0 padding-0 margin-left-sm margin-right-sm"
-                          >
-                            <input
-                              type="text"
-                              class="form-control filter-height-style font-style-normal"
-                              data-ng-click="searchTemplate($event)"
-                              data-ng-model="input.searchText"
-                              placeholder="Search Playbook"
-                              aria-labelledby="search-btn"
-                              name="search-input"
-                            />
-                            <span class="input-group-btn">
-                              <button
-                                type="submit"
-                                class="btn btn-default filter-height-style"
-                                aria-label="Search"
-                                id="submit-search-field"
-                              >
-                                <span class="icon icon-search"></span>
-                              </button>
-                            </span>
-                          </div>
-                        </li>
-                        <li
-                          data-ng-repeat="playbook in modulePlaybooks | filter: { 'name' : input.searchText}"
-                          class="primary-div"
-                        >
-                          <a
-                            title="{{ playbook.name }}"
-                            href="#"
-                            data-ng-click="addButtonWithRecord(playbook)"
-                          >
-                            <span
-                              class="truncate white-space-nowrap template-list-style width-70"
-                              >{{ playbook.name }}</span
-                            >
-                          </a>
-                        </li>
-                      </ul>
+  <form data-ng-submit="save()" class="noMargin" name="editPlaybookButtonsForm" novalidate>
+    <div class="modal-header">
+      <h3 class="modal-title col-md-9">Edit Playbook Buttons</h3>
+      <button type="button" class="close" data-ng-click="cancel()" data-dismiss="modal" aria-label="Close"
+        id="close-edit-widget-form-btn">
+        <div aria-hidden="true" class="version-button">+</div>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="typehead-field" name="userForm">
+        <h8>Select the playbooks which you want to render on record View Panel</h8>
+        <div class="form-group dashed-border-section" style="position:relative;">
+          <div style="padding: 12px;">
+            <div class="row margin-bottom-sm">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="form-group margin-bottom-0"
+                      data-ng-class="{ 'has-error': editPlaybookButtonsForm.select_playbooks_with_record.$invalid && editPlaybookButtonsForm.select_playbooks_with_record.$touched }">
+                      <label class="control-label">Select Action Buttons</label>
+                      <span data-uib-tooltip="Select playbook which tou want to render and execute from record view panel"
+                        data-tooltip-append-to-body="true"><i class="margin-left-sm icon icon-information font-Size-13">
+                        </i></span>
+                        <div class="btn-group cd-dropdown" uib-dropdown>
+                          <button class="form-control input-sm truncate" uib-dropdown-toggle type="button" data-toggle="dropdown" data-ng-required="true" id="select_playbooks_with_record">Select a Playbook
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                            <li class="primary-div" data-ng-if="modulePlaybooks.length > 5" >
+                              <div class="input-group search-style margin-0 padding-0 margin-left-sm margin-right-sm">
+                                <input type="text" class="form-control filter-height-style font-style-normal" data-ng-click="searchTemplate($event)" data-ng-model="input.searchText" placeholder="Search Playbook" aria-labelledby="search-btn" name="search-input">
+                                <span class="input-group-btn">
+                                  <button type="submit" class="btn btn-default filter-height-style" aria-label="Search" id="submit-search-field">
+                                    <span class="icon icon-search"></span>
+                                  </button>
+                                </span>
+                              </div>
+                            </li>
+                            <li data-ng-repeat="playbook in modulePlaybooks | filter: { 'name' : input.searchText}" class="primary-div">
+                              <a title="{{ playbook.name }}" href="#" data-ng-click="addButtonWithRecord(playbook)">
+                                <span class="truncate white-space-nowrap template-list-style width-70">{{ playbook.name }}</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-8 margin-left-18">
-                  <ul
-                    id="action-editor-with-record"
-                    class="list-group margin-top-md clearfix margin-bottom-0"
-                    data-as-sortable
-                    data-ng-model="config.selectedPlaybooksWithRecord"
-                    data-ng-show="modulePlaybooks"
-                  >
-                    <li
-                      id="with-record-draggable-item-all_{{$index}}"
-                      class="column-editor-block margin-bottom-sm"
-                      data-ng-repeat="action in config.selectedPlaybooksWithRecord"
-                      data-as-sortable-item
-                    >
-                      <div cs-icons data-ng-model="action.icon"></div>
-                      <div
-                        data-as-sortable-item-handle
-                        class="column-editor-text"
-                        title="{{ action.name }}"
-                      >
-                        {{action.name}}
-                      </div>
-                      <span
-                        id="removeButtonWithRecord_($index)"
-                        class="icon icon-close text-danger pull-right margin-top-sm"
-                        data-ng-click="removeButtonWithRecord($index, action)"
-                      ></span>
-                    </li>
-                  </ul>
+                <div class="row">
+                  <div class="col-md-8 margin-left-18">
+                    <ul id="action-editor-with-record" class="list-group margin-top-md clearfix margin-bottom-0"
+                      data-as-sortable data-ng-model="config.selectedPlaybooksWithRecord" data-ng-show="modulePlaybooks">
+                      <li id="with-record-draggable-item-all_{{$index}}" class="column-editor-block margin-bottom-sm"
+                        data-ng-repeat="action in config.selectedPlaybooksWithRecord" data-as-sortable-item>
+                        <div cs-icons data-ng-model="action.icon">
+                        </div>
+                        <div data-as-sortable-item-handle class="column-editor-text" title="{{ action.name }}">
+                          {{action.name}}</div>
+                        <span id="removeButtonWithRecord_($index)"
+                          class="icon icon-close text-danger pull-right margin-top-sm"
+                          data-ng-click="removeButtonWithRecord($index, action)"></span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            class="mertics-widget-border padding-top-md padding-bottom-md"
-          ></div>
-          <div class="checkbox-inline margin-top-18">
-            <label for="showExecutionProgress" class="control-label">
-              <input
-                id="showExecutionProgress"
-                type="checkbox"
-                name="showExecutionProgress"
-                data-ng-model="config.showExecutionProgress"
-                data-ng-click="resetExecutionProgress()"
-              />
-              <span class="display-inline-block margin-top-1"
-                >Show playbook execution progress on wizard</span
-              >
-            </label>
-            <span
-              data-uib-tooltip="By Enabling this option the playbook execution will show on playbook execution wizard"
-              data-tooltip-append-to-body="true"
-              ><i class="margin-left-sm icon icon-information font-Size-13"> </i
-            ></span>
-          </div>
-          <div data-ng-if="config.showExecutionProgress">
-            <div
-              class="form-group margin-left-18"
-              data-ng-class="{ 'has-error': editPlaybookButtonsForm.select_playbooks.$invalid && editPlaybookButtonsForm.select_playbooks.$touched }"
-            >
-              <label class="control-label">Playbook included list</label>
+            <div class="mertics-widget-border padding-top-md padding-bottom-md"></div>
+            <div class="checkbox-inline margin-top-18">
+              <label for="showExecutionProgress" class="control-label">
+                <input id="showExecutionProgress" type="checkbox" name="showExecutionProgress"
+                  data-ng-model="config.showExecutionProgress" data-ng-click="resetExecutionProgress()">
+                <span class="display-inline-block margin-top-1">Show playbook execution progress on
+                  wizard</span>
+              </label>
               <span
-                data-uib-tooltip="Provide a list of playbook whose
-                                  execution you want to include in the playbook execution wizard"
-                data-tooltip-append-to-body="true"
-                ><i class="margin-left-sm icon icon-information font-Size-13">
-                </i
-              ></span>
-              <div class="cs-select">
-                <ui-select
-                  name="select_playbooks"
-                  id="select_playbooks"
-                  data-ng-click="playbookButton()"
-                  data-ng-model="config.selectedExecutionWizardPlaybooks"
-                  data-ng-required="true"
-                  multiple
-                  class="custom-multi-select"
-                  append-to-body="false"
-                  required="config.selectedExecutionWizardPlaybooks.length === 0"
-                >
-                  <ui-select-match placeholder="Choose Playbooks..."
-                    >{{$item.name}}
-                  </ui-select-match>
-                  <ui-select-choices
-                    repeat="playbook in playbookList | filter: $select.search | orderBy: 'name'"
-                    refresh-delay="200"
-                    ng-show="$select.items.length >= 0 || "
-                  >
-                    <div
-                      ng-bind-html="playbook.name | highlight: $select.search"
-                    ></div>
-                  </ui-select-choices>
-                </ui-select>
-              </div>
+                data-uib-tooltip="By Enabling this option the playbook execution will show on playbook execution wizard"
+                data-tooltip-append-to-body="true"><i class="margin-left-sm icon icon-information font-Size-13">
+                </i></span>
             </div>
             <div data-ng-if="config.showExecutionProgress">
-              <div
-                class="form-group margin-left-18"
-                data-ng-class="{ 'has-error': editPlaybookButtonsForm.widgetName.$invalid && editPlaybookButtonsForm.widgetName.$touched }"
-              >
-                <uib-accordion>
-                  <div uib-accordion-group class="panel-default">
-                    <uib-accordion-heading>
-                      <div
-                        ng-click="toggleAdvancedSettings()"
-                        data-ng-class="{'queue-text-active-color': toggle}"
-                      >
-                        <div class="margin-right-lg pull-left">
-                          <span class="queue-card-actions"
-                            >&nbsp;<i
-                              class="fa {{ toggle ? 'fa-chevron-down' : 'fa-chevron-right'}}"
-                            ></i
-                          ></span>
+              <div class="form-group margin-left-18"
+                data-ng-class="{ 'has-error': editPlaybookButtonsForm.select_playbooks.$invalid && editPlaybookButtonsForm.select_playbooks.$touched }">
+                <label class="control-label">Playbook included list</label>
+                <span data-uib-tooltip="Provide a list of playbook whose
+                                  execution you want to include in the playbook execution wizard"
+                  data-tooltip-append-to-body="true"><i class="margin-left-sm icon icon-information font-Size-13">
+                  </i></span>
+                <div class="cs-select">
+                  <ui-select name="select_playbooks" id="select_playbooks" data-ng-click="playbookButton()"
+                    data-ng-model="config.selectedExecutionWizardPlaybooks" data-ng-required="true" multiple
+                    class="custom-multi-select" append-to-body="false"
+                    required="config.selectedExecutionWizardPlaybooks.length === 0">
+                    <ui-select-match placeholder="Choose Playbooks...">{{$item.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="playbook in playbookList | filter: $select.search | orderBy: 'name'"
+                      refresh-delay="200" ng-show="$select.items.length >= 0 || ">
+                      <div ng-bind-html="playbook.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+              <div data-ng-if="config.showExecutionProgress">
+                <div class="form-group margin-left-18"
+                  data-ng-class="{ 'has-error': editPlaybookButtonsForm.widgetName.$invalid && editPlaybookButtonsForm.widgetName.$touched }">
+                  <uib-accordion>
+                    <div uib-accordion-group class="panel-default">
+                      <uib-accordion-heading>
+                        <div ng-click="toggleAdvancedSettings()" data-ng-class="{'queue-text-active-color': toggle}">
+                          <div class="margin-right-lg pull-left"><span class="queue-card-actions">&nbsp;<i
+                                class="fa {{ toggle ? 'fa-chevron-down' : 'fa-chevron-right'}}"></i></span>
+                          </div>
+                          <div class="pull-left queue-card-header-text margin-right-3">
+                            Advanced Settings
+                          </div>
+                          <div class="clearfix"></div>
                         </div>
-                        <div
-                          class="pull-left queue-card-header-text margin-right-3"
-                        >
-                          Advanced Settings
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                    </uib-accordion-heading>
-                    <label for="widgetName" class="control-label"
-                      >Widget Name</label
-                    >
-                    <input
-                      id="widgetName"
-                      name="widgetName"
-                      type="text"
-                      class="form-control"
-                      data-ng-model="config.widgetName"
-                      required
-                    />
-                  </div>
-                </uib-accordion>
+                      </uib-accordion-heading>
+                      <label for="widgetName" class="control-label">Widget Name</label>
+                      <input id="widgetName" name="widgetName" type="text" class="form-control"
+                        data-ng-model="config.widgetName" required>
+                    </div>
+                  </uib-accordion>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="mertics-widget-border padding-top-md padding-bottom-md"
-          ></div>
-          <div class="checkbox-inline margin-top-18">
-            <label for="showPrimaryButton" class="control-label">
-              <input
-                id="showPrimaryButton"
-                type="checkbox"
-                name="showPrimaryButton"
-                data-ng-model="config.showPrimaryButton"
-              />
-              <span class="display-inline-block margin-top-1"
-                >Display as Primary Button</span
-              >
-            </label>
-            <span
-              data-uib-tooltip="By enabling this option, Bootstrap classes are applied to style the button as a primary button"
-              data-tooltip-append-to-body="true"
-              ><i class="margin-left-sm icon icon-information font-Size-13"> </i
-            ></span>
+            <div class="mertics-widget-border padding-top-md padding-bottom-md"></div>
+            <div class="checkbox-inline margin-top-18">
+              <label for="showPrimaryButton" class="control-label">
+                <input id="showPrimaryButton" type="checkbox" name="showPrimaryButton"
+                  data-ng-model="config.showPrimaryButton">
+                <span class="display-inline-block margin-top-1">Display as Primary Button</span>
+              </label>
+              <span
+                data-uib-tooltip="By enabling this option, Bootstrap classes are applied to style the button as a primary button"
+                data-tooltip-append-to-body="true"><i class="margin-left-sm icon icon-information font-Size-13">
+                </i></span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button id="edit-widget-save" type="submit" class="btn btn-sm btn-primary">
-      <i class="icon icon-check margin-right-sm"></i>Save
-    </button>
-    <button
-      id="edit-widget-cancel"
-      type="button"
-      class="btn btn-sm btn-default"
-      data-ng-click="cancel()"
-    >
-      <i class="icon icon-close margin-right-sm"></i>Close
-    </button>
-  </div>
-</form>
+    <div class="modal-footer">
+      <button id="edit-widget-save" type="submit" class="btn btn-sm btn-primary"><i
+          class="icon icon-check margin-right-sm"></i>Save</button>
+      <button id="edit-widget-cancel" type="button" class="btn btn-sm btn-default" data-ng-click="cancel()"><i
+          class="icon icon-close margin-right-sm"></i>Close</button>
+    </div>
+  </form>
