@@ -6,11 +6,11 @@
 (function () {
   angular
     .module('cybersponse')
-    .controller('playbookButtons110Ctrl', playbookButtons110Ctrl);
+    .controller('playbookButtons111Ctrl', playbookButtons111Ctrl);
 
-  playbookButtons110Ctrl.$inject = ['$scope', '_', 'currentPermissionsService', 'FormEntityService', 'playbookService', '$filter', 'widgetService', 'API', '$resource', 'widgetBasePath', 'toaster'];
+  playbookButtons111Ctrl.$inject = ['$scope', '_', 'currentPermissionsService', 'FormEntityService', 'playbookService', '$filter', 'widgetService', 'API', '$resource', 'widgetBasePath', 'toaster'];
 
-  function playbookButtons110Ctrl($scope, _, currentPermissionsService, FormEntityService, playbookService, $filter, widgetService, API, $resource, widgetBasePath, toaster) {
+  function playbookButtons111Ctrl($scope, _, currentPermissionsService, FormEntityService, playbookService, $filter, widgetService, API, $resource, widgetBasePath, toaster) {
     $scope.actionButtonPlaybooks = [];
     $scope.recordPlaybooks = [];
     $scope.widgetBasePath = widgetBasePath;
@@ -28,14 +28,13 @@
       playbookService.detachPaybookStatusWebsocket($scope.playbookStatusSubscription);
     });
 
-    function renderActionButtons() {
+    function renderActionButtons(entity) {
       let actionPlaybookList = [];
-      let playbookIDs = _.pluck($scope.config.selectedPlaybooksWithRecord, 'uuid');
-      playbookService.getPlaybooksData(playbookIDs, ['name', 'triggerStep', 'steps', 'recordTags']).then(function (results) {
-        if(results && results['hydra:member'] && results['hydra:member'].length > 0) {
-          angular.forEach(results['hydra:member'], function(playbookRecord) {
-            angular.forEach($scope.config.selectedPlaybooksWithRecord, function(playbookConfig) {
-              if(playbookConfig.uuid === playbookRecord.uuid) {
+      playbookService.getActionPlaybooks(entity, true).then(function (results) {
+        if (results && results.length > 0) {
+          angular.forEach(results, function (playbookRecord) {
+            angular.forEach($scope.config.selectedPlaybooksWithRecord, function (playbookConfig) {
+              if (playbookConfig.uuid === playbookRecord.uuid && playbookRecord._hide === false) {
                 playbookRecord.icon = playbookConfig.icon;
                 playbookRecord.collectionName = playbookConfig.collectionName;
                 playbookRecord.actionTriggerName = playbookConfig.actionTriggerName;
@@ -45,9 +44,9 @@
           });
           createPlaybookButtons(actionPlaybookList);
         }
-      }, function(){
+      }, function () {
         toaster.error({
-          body: 'No results found'
+          body: 'No playbooks found'
         });
       });
     }
