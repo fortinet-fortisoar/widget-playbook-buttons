@@ -6,11 +6,11 @@
 (function () {
   angular
     .module('cybersponse')
-    .controller('playbookButtons110Ctrl', playbookButtons110Ctrl);
+    .controller('playbookButtons111Ctrl', playbookButtons111Ctrl);
 
-  playbookButtons110Ctrl.$inject = ['$scope', '_', 'currentPermissionsService', 'FormEntityService', 'playbookService', '$filter', 'widgetService', 'API', '$resource', 'widgetBasePath', 'toaster'];
+  playbookButtons111Ctrl.$inject = ['$scope', '_', 'currentPermissionsService', 'FormEntityService', 'playbookService', '$filter', 'widgetService', 'API', '$resource', 'widgetBasePath', 'toaster', 'Query'];
 
-  function playbookButtons110Ctrl($scope, _, currentPermissionsService, FormEntityService, playbookService, $filter, widgetService, API, $resource, widgetBasePath, toaster) {
+  function playbookButtons111Ctrl($scope, _, currentPermissionsService, FormEntityService, playbookService, $filter, widgetService, API, $resource, widgetBasePath, toaster, Query) {
     $scope.actionButtonPlaybooks = [];
     $scope.recordPlaybooks = [];
     $scope.widgetBasePath = widgetBasePath;
@@ -39,6 +39,14 @@
                 playbookRecord.icon = playbookConfig.icon;
                 playbookRecord.collectionName = playbookConfig.collectionName;
                 playbookRecord.actionTriggerName = playbookConfig.actionTriggerName;
+                var triggerStep = playbookService.getTriggerStep(playbookRecord);
+                if(!angular.isUndefined(triggerStep)) {
+                  if (triggerStep.arguments.displayConditions && ($scope.entity.id || rows.length > 0) && !triggerStep.arguments.noRecordExecution) {
+                    var displayConditions = new Query(triggerStep.arguments.displayConditions[$scope.entity.module]);
+                    var result = $scope.entity.evaluate(displayConditions);
+                    playbookRecord._hide = !result || false;
+                  }
+                }
                 actionPlaybookList.push(playbookRecord);
               }
             });
@@ -66,7 +74,7 @@
           icon: playbook.icon || 'icon icon-execute',
           text: triggerStep.arguments.title || playbook.name,
           desc: (playbook.description || playbook.name) + ' (' + playbook.collectionName + ')',
-          hide: playbook._hide,
+          _hide: playbook._hide,
           _subtitleDisplay: playbook.collectionName,
           onClick: function () {
             var isWizardExecution = _.some($scope.config.selectedExecutionWizardPlaybooks, function (f) {

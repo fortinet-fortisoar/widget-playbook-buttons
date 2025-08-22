@@ -6,11 +6,11 @@
 (function () {
   angular
     .module('cybersponse')
-    .controller('editPlaybookButtons110Ctrl', editPlaybookButtons110Ctrl);
+    .controller('editPlaybookButtons111Ctrl', editPlaybookButtons111Ctrl);
 
-  editPlaybookButtons110Ctrl.$inject = ['$scope', '$uibModalInstance', 'config', 'FormEntityService', 'currentPermissionsService', 'playbookService', '_'];
+  editPlaybookButtons111Ctrl.$inject = ['$scope', '$uibModalInstance', 'config', 'FormEntityService', 'currentPermissionsService', 'playbookService', '_'];
 
-  function editPlaybookButtons110Ctrl($scope, $uibModalInstance, config, FormEntityService, currentPermissionsService, playbookService, _) {
+  function editPlaybookButtons111Ctrl($scope, $uibModalInstance, config, FormEntityService, currentPermissionsService, playbookService, _) {
     $scope.cancel = cancel;
     $scope.save = save;
     $scope.config = config;
