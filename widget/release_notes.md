@@ -1,5 +1,3 @@
 # What's New
 
-## Minor Bug Fixes
-
-- Code refactored to update the playbook buttons visibility as per filter criteria.
+- Code refactored to ensure that the widget *Playbook Buttons* appears as per the defined filter criteria.
